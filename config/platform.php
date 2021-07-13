@@ -129,7 +129,7 @@ return [
 
     'template' => [
         'header' => null,
-        'footer' => null,
+        'footer' => 'platform.footer',
     ],
 
     /*
@@ -192,19 +192,5 @@ return [
     'turbo' => [
         'cache' => false
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fallback Page
-    |--------------------------------------------------------------------------
-    |
-    | If the request does not match any route and arguments,
-    | Orchid will automatically generate its own 404 page.
-    | It can be disabled if you want to declare routes on the same
-    | domain and prefix or create your own page.
-    |
-    */
-
-    'fallback' => true,
 
 ];

@@ -2,10 +2,13 @@
 
 namespace App\Orchid;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
+use Orchid\Screen\TD;
 use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
@@ -17,7 +20,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         parent::boot($dashboard);
 
-        // ...
+        $this->registerTdMacros();
     }
 
     /**
@@ -26,6 +29,14 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
+            Menu::make('News categories')
+                ->route('platform.news.category')
+                ->icon('docs')
+                ->title('Content'),
+            Menu::make('News')
+                ->route('platform.news.item')
+                ->icon('docs'),
+
             Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
@@ -127,5 +138,47 @@ class PlatformProvider extends OrchidServiceProvider
             // ...Models
             // \App\Models\User::class
         ];
+    }
+
+    protected function registerTdMacros()
+    {
+        TD::macro(
+            'booleanState',
+            function () {
+                $columnName = $this->column;
+
+                $this->render(
+                    function (Model $model) use ($columnName) {
+                        return \view('platform.boolean-state', ['state' => $model->{$columnName}]);
+                    }
+                );
+
+                return $this;
+            }
+        );
+
+        TD::macro(
+            'dateTimeString',
+            function () {
+                $columnName = $this->column;
+
+                $this->render(
+                    function (Model $model) use ($columnName) {
+                        $defValue = '-';
+
+                        if (!$model->{$columnName}) {
+                            return $defValue;
+                        }
+                        $columnValue = &$model->{$columnName};
+
+                        return $columnValue && $columnValue instanceof Carbon
+                            ? $columnValue->toDateTimeString()
+                            : $defValue;
+                    }
+                );
+
+                return $this;
+            }
+        );
     }
 }

@@ -107,4 +107,10 @@ Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platfor
 Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
 Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
 
+Route::screen('news-category', \App\Orchid\Screens\News\Category::class)->name('platform.news.category');
+Route::screen('news-category-edit/{category}', \App\Orchid\Screens\News\CategoryEdit::class)->name('platform.news.category-edit');
+
+Route::screen('news-item', \App\Orchid\Screens\News\Item::class)->name('platform.news.item');
+Route::screen('news-item-edit/{item?}', \App\Orchid\Screens\News\ItemEdit::class)->name('platform.news.item-edit');
+
 //Route::screen('idea', 'Idea::class','platform.screens.idea');
