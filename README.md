@@ -1,14 +1,14 @@
-### Как развернуть проект
+### How to Deploy the Project
 
-#### Запуск проекта через `Docker`
+#### Running the Project with `Docker`
 
-* скопировать `.env.example` в `.env`
-* применить настройки окружения в `.env`
-* запустить сервис `web` - `docker-compose up -d web`, автоматически запустится сервис `php`
-* в контейнере сервиса `php` выполнить команды: `composer install -n`, `php artisan key:generate`, `php artisan orchid:link`
+* Copy `.env.example` to `.env`
+* Apply environment settings in `.env`
+* Start the `web` service: `docker-compose up -d web`. The `php` service will start automatically.
+* In the `php` service container, execute the following commands: `composer install -n`, `php artisan key:generate`, `php artisan orchid:link`
 
-#### Запуск проекта обычным способом
+#### Running the Project Manually
 
-* скопировать `.env.example` в `.env`
-* применить настройки окружения в `.env`
-* выполнить команды: `composer install -n`, `php artisan key:generate`, `php artisan orchid:link`
+* Copy `.env.example` to `.env`
+* Apply environment settings in `.env`
+* Execute the following commands: `composer install -n`, `php artisan key:generate`, `php artisan orchid:link`
